@@ -2,13 +2,12 @@
 
 碰到一个人渣老板，你是想找播音主持专业的吗？好，我给你！
 
-### Install
-
-`cnpm install`
-
 ### Run
 
-`cnpm start`
+```
+cnpm install
+cnpm start
+```
 
 ### Package
 
