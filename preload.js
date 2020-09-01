@@ -33,6 +33,7 @@ axios.get(authUrl).then(resp => {
 
 	//window.ipcRenderer = require('electron').ipcRenderer
 
+	//https://www.electronjs.org/docs/api/context-bridge
 	contextBridge.exposeInMainWorld('electron', {
 		ipcRenderer: ipcRenderer,
 		token: token,
