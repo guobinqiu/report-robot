@@ -6,7 +6,7 @@
 
 `cnpm start`
 
-# Build
+# Package
 
 ```
 # Taobao mirror speed up
