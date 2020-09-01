@@ -61,7 +61,7 @@ axios.get(authUrl).then(resp => {
 			}).then(resp => {
 				if (resp.headers['content-type'].startsWith("audio/")) {
 					let filePath = path.join(__dirname, 'result.' + formats.get(aue))
-					console.log(filePath)
+					//console.log(filePath)
 
 					let ws = fs.createWriteStream(filePath)
 					resp.data.pipe(ws)

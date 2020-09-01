@@ -1,20 +1,15 @@
-# Install
+#Install
 
 `cnpm install`
 
 # Run
 
-`npm start`
+`cnpm start`
 
 # Build
 
 ```
-# Taobao mirror
 export ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
-
-# For Windows
-npm run package-win
-
-# For Mac
-npm run package-mac
+cnpm run package-win
+cnpm run package-mac
 ```
