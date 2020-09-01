@@ -10,9 +10,15 @@
 //     replaceText(`${type}-version`, process.versions[type])
 //   }
 // })
+//https://www.electronjs.org/docs/api/context-bridge
 const {contextBridge, ipcRenderer} = require('electron')
+
+//https://www.npmjs.com/package/urlencode
 const urlencode = require('urlencode')
+
+//https://www.npmjs.com/package/qs
 const qs = require('qs')
+
 const fs = require('fs')
 const path = require('path')
 
@@ -25,20 +31,16 @@ axios.defaults.adapter = require('axios/lib/adapters/http')
 //https://ai.baidu.com/ai-doc/SPEECH/0k38y8mfh
 const {apiKey, secretKey} = require('./config')
 let authUrl = "https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=" + apiKey + "&client_secret=" + secretKey
-
-axios.get(authUrl).then(resp => {
-	//handle success
+axios.get(authUrl).then(resp => {//handle success
 	let token = resp.data.access_token
 	//console.log(token)
 
 	//window.ipcRenderer = require('electron').ipcRenderer
-
-	//https://www.electronjs.org/docs/api/context-bridge
 	contextBridge.exposeInMainWorld('electron', {
 		ipcRenderer: ipcRenderer,
 		token: token,
 		speak: (token, params) => {
-			//下载的文件格式, 3：mp3(default) 4： pcm-16k 5： pcm-8k 6. wav
+			//3：mp3(default) 4： pcm-16k 5： pcm-8k 6. wav
 			const aue = 3
 
 			let formats = new Map()
@@ -51,13 +53,13 @@ axios.get(authUrl).then(resp => {
 			params['cuid'] = '123456Nodejs'
 			params['tex'] = urlencode(params['text'])
 			params['tok'] = token
-			params['lan'] = 'zh' //固定参数
-			params['ctp'] = 1 // 固定参数
+			params['lan'] = 'zh' //fixed parameter
+			params['ctp'] = 1 //fixed parameter
 			//console.log(params)
 
 			//https://ai.baidu.com/ai-doc/SPEECH/0k38y8mfh
 			const $url = 'http://tsn.baidu.com/text2audio'
-			return axios.post($url, qs.stringify(params), {
+			return axios.post($url, qs.stringify(params), {//convert {foo: bar} to foo=bar
 				responseType: 'stream',
 			}).then(resp => {
 				if (resp.headers['content-type'].startsWith("audio/")) {
@@ -81,7 +83,6 @@ axios.get(authUrl).then(resp => {
 			})
 		},
 	})
-}).catch(err => {
-	//handle error
+}).catch(err => {//handle error
 	console.log(err)
 })
