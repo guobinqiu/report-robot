@@ -1,0 +1,6 @@
+node_modules
+/result.*
+.idea/
+.DS_Store
+build/
+

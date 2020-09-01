@@ -1,0 +1,31 @@
+{
+  "name": "report-robot",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-mac": "electron-packager ./ report-robot --out=./build --platform=darwin",
+    "package-win": "electron-packager ./ report-robot --out=./build --platform=win32"
+  },
+  "repository": "https://github.com/guobinqiu/report-robot",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^10.1.0",
+    "electron-packager": "^15.1.0"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "qs": "^6.9.4",
+    "sound-play": "^1.0.5",
+    "urlencode": "^1.1.0"
+  }
+}

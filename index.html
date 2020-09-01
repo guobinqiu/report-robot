@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>汇报机器人V1.0</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.9.0/jquery.serializejson.min.js"></script>
+  </head>
+  <body>
+    <form>
+      <div>发音人
+        <label><input type="radio" name="per" value="0">小美</label>
+        <label><input type="radio" name="per" value="1" checked>小宇</label>
+        <label><input type="radio" name="per" value="3">逍遥</label>
+        <label><input type="radio" name="per" value="4">丫丫</label>
+      </div>
+      <div>
+        语速<input name="spd" type="range" min="0" max="15" step="1" value="5"/>
+        音调<input name="pit" type="range" min="0" max="15" step="1" value="5"/>
+        音量<input name="vol" type="range" min="0" max="9" step="1" value="5"/>
+      </div>
+      <textarea rows="30" cols="90" name="text">你是我心中不变美丽的神话</textarea>
+      <button type="submit">Play</button>
+      <button id="btn" type="button">Pause/Resume</button>
+    </form>
+
+    <audio id="sound" src="">您的浏览器不支持该audio元素</audio>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>
