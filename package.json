@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron .",
     "package-mac": "electron-packager ./ report-robot --out=./build --overwrite --platform=darwin",
-    "package-win": "electron-packager ./ report-robot --out=./build --overwrite --platform=win32"
+    "package-win64": "electron-packager ./ report-robot --out=./build --overwrite --platform=win32 --arch=x64",
+    "package-win32": "electron-packager ./ report-robot --out=./build --overwrite --platform=win32 --arch=ia32"
   },
   "repository": "https://github.com/guobinqiu/report-robot",
   "keywords": [

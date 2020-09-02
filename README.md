@@ -13,11 +13,14 @@ cnpm start
 # Taobao mirror speed up
 export ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
 
-# For Windows
-cnpm run package-win
-
 # For Mac
 cnpm run package-mac
+
+# For Win64
+cnpm run package-win64
+
+# For Win32
+cnpm run package-win32
 ```
 
 ### Download
