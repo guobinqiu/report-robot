@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "electron-store": "^6.0.0",
     "qs": "^6.9.4",
     "urlencode": "^1.1.0"
   }

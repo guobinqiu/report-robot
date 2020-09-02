@@ -1,6 +1,10 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
+const axios = require('axios')
+
+//https://www.npmjs.com/package/electron-store
+const Store = require('electron-store')
 
 function createWindow() {
 	// Create the browser window.
@@ -11,6 +15,7 @@ function createWindow() {
 			preload: path.join(__dirname, 'preload.js'),
 			nodeIntegration: false,
 			contextIsolation: true,
+			enableRemoteModule: true,
 		}
 	})
 
@@ -18,7 +23,7 @@ function createWindow() {
 	mainWindow.loadFile('index.html')
 
 	// Open the DevTools.
-	//mainWindow.webContents.openDevTools()
+	mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
@@ -43,3 +48,29 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+//Set global vars
+getToken().then(token => {
+	const store = new Store()
+	if (!store.get('settings')) {
+		store.set('setting', {
+			per: 1, //0小美 1小宇 3逍遥 4丫丫
+			spd: 5,//语速(0-15)
+			pit: 5,//音调(0-15)
+			vol: 5,//音量(0-9)
+		})
+	}
+	global.store = store
+	global.token = token
+}).catch(err => {
+	console.log(err)
+})
+
+//https://ai.baidu.com/ai-doc/SPEECH/0k38y8mfh
+function getToken() {
+	const {apiKey, secretKey} = require('./config')
+	let authUrl = "https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=" + apiKey + "&client_secret=" + secretKey
+	return axios.get(authUrl).then(resp => {//handle success
+		return resp.data.access_token
+	})
+}

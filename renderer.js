@@ -7,13 +7,15 @@
 $('form').on('submit', e => {
 	e.preventDefault()
 
-	let token = window.electron.token
-	//console.log(token)
-
 	let params = $('form').serializeJSON()
 	//console.log(params)
 
-	window.electron.speak(token, params)
+	let copyParams = Object.assign({}, params)
+	delete copyParams.text
+
+	window.electron.saveSettings(copyParams)
+
+	window.electron.speak(params)
 })
 
 $('#btn').on('click', () => {
@@ -24,5 +26,20 @@ $('#btn').on('click', () => {
 		} else {
 			audio.pause()
 		}
+	}
+})
+
+$(document).ready(() => {
+	let settings = window.electron.getSettings()
+	//console.log(settings)
+	if (settings) {
+		$("input:radio").each(function () {
+			if ($(this).val() == settings.per) {
+				$(this).prop("checked", true)
+			}
+		})
+		$("input[name='spd']").val(settings.spd)
+		$("input[name='pit']").val(settings.pit)
+		$("input[name='vol']").val(settings.vol)
 	}
 })
