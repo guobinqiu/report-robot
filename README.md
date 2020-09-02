@@ -19,3 +19,7 @@ cnpm run package-win
 # For Mac
 cnpm run package-mac
 ```
+
+### Download
+
+链接: https://pan.baidu.com/s/1orSu5x-NutR0IZY2JFWGnQ 提取码: aqez
